@@ -17,7 +17,9 @@ RUN DEBIAN_FRONTEND=noninteractive apt-get -y install php5-gd
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install php5-mcrypt
 RUN DEBIAN_FRONTEND=noninteractive apt-get -y install openssh-server
 RUN php5enmod mcrypt
-RUN apt-get update ; apt-get install -y vsftpd libpam-pwdfile apache2-utils supervisor openssh-server
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install vsftpd
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install libpam-pwdfile
+RUN DEBIAN_FRONTEND=noninteractive apt-get -y install apache2-utils
 
 # For vsftpd
 RUN mkdir /etc/vsftpd \
@@ -28,7 +30,6 @@ ADD vsftpd.conf				/etc/vsftpd.conf
 ADD vsftp_virtual_user.sh			/opt/vsftp_virtual_user.sh
 RUN chmod 755 /opt/vsftp_virtual_user.sh
 RUN mkdir -p /var/log/supervisor
-RUN echo 'root:vsftpd' |chpasswd
 
 # Add image configuration and scripts
 ADD start-apache2.sh /start-apache2.sh
