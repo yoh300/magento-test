@@ -29,7 +29,7 @@ ADD vsftpd.pam				/etc/pam.d/vsftpd
 ADD vsftpd.conf				/etc/vsftpd.conf
 ADD vsftp_virtual_user.sh			/opt/vsftp_virtual_user.sh
 RUN chmod 755 /opt/vsftp_virtual_user.sh
-RUN echo "admin123:admin123" | htpasswd -cd /etc/vsftpd/virtual_user.passwd root
+RUN htpasswd -cbd /etc/vsftpd/virtual_user.passwd root admin123
 RUN mkdir -p /var/log/supervisor
 
 # Add image configuration and scripts
