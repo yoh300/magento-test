@@ -27,6 +27,7 @@ RUN mkdir /etc/vsftpd \
  && useradd --home /home --gid nogroup -m --shell /bin/false vsftpd
 ADD vsftpd.pam				/etc/pam.d/vsftpd
 ADD vsftpd.conf				/etc/vsftpd.conf
+ADD vsftpd.chroot_list				/etc/vsftpd.chroot_list
 ADD vsftp_virtual_user.sh			/opt/vsftp_virtual_user.sh
 RUN chmod 755 /opt/vsftp_virtual_user.sh
 RUN mkdir -p /var/log/supervisor
